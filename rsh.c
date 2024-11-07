@@ -31,14 +31,16 @@ int isAllowed(const char *cmd)
 
 void cd(const char *TARGET)
 {
-	// check if target dir exists
-	// change to the target using chdir
-	// FIX: not sure what dir structure looks like - can't implement this cmd yet
+	// FIX: check if target dir exists (not sure what dir structure looks like - can't implement this check yet)
+	// FIX: do I need a statement if cd fails?
+	if (chdir(TARGET) != 0)
+	{
+		printf("-rsh: cd: fail\n");
+	}
 }
 
 int main()
 {
-
 	// TODO
 	// Add variables as needed
 
@@ -84,9 +86,18 @@ int main()
 		// create process...
 
 		// 10. cd:
-		// check if NOT one argument is specified
-		// else call cd using the single arg as the target dir
-		// if ()
+		if (strcmp(tokLine[0], "cd") == 0)
+		{
+			// cd only takes one argument (got the number of arguments during tokenization)
+			if (tokenCount > 2)
+			{
+				printf("-rsh: cd: too many arguments\n");
+			}
+			// FIX: do I need a check for too few args?
+
+			// else call cd using the single arg as the target dir
+			cd(tokLine[1]);
+		}
 	}
 	return 0;
 }
