@@ -29,6 +29,13 @@ int isAllowed(const char *cmd)
 	return 0;
 }
 
+void cd(const char *TARGET)
+{
+	// check if target dir exists
+	// change to the target using chdir
+	// FIX: not sure what dir structure looks like - can't implement this cmd yet
+}
+
 int main()
 {
 
@@ -36,6 +43,10 @@ int main()
 	// Add variables as needed
 
 	char line[256];
+	char lineCopy[256];
+	const int NUM_ARGS = 20; // only supposed to have 20 arguments max
+	char *tokLine[NUM_ARGS]; // tokenized line
+	int tokenCount = 0;
 
 	while (1)
 	{
@@ -50,10 +61,32 @@ int main()
 
 		line[strlen(line) - 1] = '\0';
 
-		// TODO
-		// Add code to spawn processes for the first 9 commands
-		// And add code to execute cd, exit, help commands
-		// Use the example provided in myspawn.c
+		// copy line before tokenizing
+		strcpy(lineCopy, line);
+
+		// tokenize line based on spaces
+		char *token = strtok(lineCopy, " ");
+		tokenCount = 0;
+
+		while (token != NULL && tokenCount < NUM_ARGS)
+		{
+			tokLine[tokenCount++] = token;
+			token = strtok(NULL, " ");
+		}
+
+		// check if cmd is valid - check first element in line arr
+		if (isAllowed(tokLine[0]) == 0)
+		{
+			printf("NOT ALLOWED!\n");
+		}
+
+		// implement cmds 1-9:
+		// create process...
+
+		// 10. cd:
+		// check if NOT one argument is specified
+		// else call cd using the single arg as the target dir
+		// if ()
 	}
 	return 0;
 }
