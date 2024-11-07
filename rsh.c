@@ -104,6 +104,12 @@ int main()
 		{
 			return 0;
 		}
+
+		// 12. help:
+		if (strcmp(tokLine[0], "help") == 0)
+		{
+			printf("The allowed commands are:\n1: cp\n2: touch\n3: mkdir\n4: ls\n5: pwd\n6: cat\n7: grep\n8: chmod\n9: diff\n10: cd\n11: exit\n12: help\n");
+		}
 	}
 	return 0;
 }
