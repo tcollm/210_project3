@@ -98,6 +98,12 @@ int main()
 			// else call cd using the single arg as the target dir
 			cd(tokLine[1]);
 		}
+
+		// 11. exit:
+		if (strcmp(tokLine[0], "exit") == 0)
+		{
+			return 0;
+		}
 	}
 	return 0;
 }
