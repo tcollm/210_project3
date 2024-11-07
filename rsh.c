@@ -55,10 +55,10 @@ int spawn_process(char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
-	if (WIFEXITED(status))
-	{
-		printf("Spawned process exited with status %d\n", WEXITSTATUS(status));
-	}
+	// if (WIFEXITED(status))
+	// {
+	// 	printf("Spawned process exited with status %d\n", WEXITSTATUS(status));
+	// }
 
 	// Destroy spawn attributes
 	posix_spawnattr_destroy(&attr);
@@ -119,9 +119,7 @@ int main()
 		{
 			printf("NOT ALLOWED!\n");
 		}
-
-		// 10. cd:
-		if (strcmp(tokLine[0], "cd") == 0)
+		else if (strcmp(tokLine[0], "cd") == 0) // 10. cd:
 		{
 			// cd only takes one argument (got the number of arguments during tokenization)
 			if (tokenCount > 2)
